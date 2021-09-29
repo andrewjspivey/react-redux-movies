@@ -1,4 +1,4 @@
-const searchMovieReducer = (state = [], action) => {
+const searchedMoviesReducer = (state = [], action) => {
   switch (action.type) {
     case "SEARCHMOVIES":
       return action.payload;
@@ -7,4 +7,4 @@ const searchMovieReducer = (state = [], action) => {
   }
 };
 
-export default searchMovieReducer;
+export default searchedMoviesReducer;

@@ -1,11 +1,15 @@
 import { combineReducers } from "redux";
-import searchMoviesReducer from "./searchMovie";
+import searchedMoviesReducer from "./searchMovie";
 import searchTermReducer from "./searchTermReducer";
 import movieDetailsReducer from "./movieDetails";
+import searchTypeReducer from "./searchType";
+import singleMovieReducer from "./singleMovieReducer";
 
 const allReducers = combineReducers({
-  searchMovie: searchMoviesReducer,
   searchTerm: searchTermReducer,
+  searchType: searchTypeReducer,
+  searchedMovies: searchedMoviesReducer,
+  singleMovie: singleMovieReducer,
   movieDetails: movieDetailsReducer,
 });
 

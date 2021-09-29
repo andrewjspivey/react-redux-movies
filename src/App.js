@@ -1,41 +1,49 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { change } from "./redux/actions";
 
+import { API } from "./API/API";
 import {
-  increment,
-  decrement,
-  login,
   searchMovies,
   getMovieDetailsById,
+  change,
+  searchTypeChange,
+  searchSingleMovie,
 } from "./redux/actions/index";
 import axios from "axios";
+import SearchedMovies from "./Components/SearchedMovies";
+import SearchedSingleMovie from "./Components/SearchedSingleMovie";
 
 function App() {
-  const counter = useSelector((state) => state.counter);
-  const isLogged = useSelector((state) => state.isLogged);
-  const searchMovie = useSelector((state) => state.searchMovie);
   const searchTerm = useSelector((state) => state.searchTerm);
-  const movieDetails = useSelector((state) => state.movieDetails);
+  const searchType = useSelector((state) => state.searchType);
+  const searchedMovies = useSelector((state) => state.searchedMovies);
+  const singleMovie = useSelector((state) => state.singleMovie);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    axios
-      .get("https://www.omdbapi.com/?apikey=71a9dce3&s=matrix")
-      .then((data) => {
-        dispatch(searchMovies(data.data.Search));
-      })
-      .catch((err) => console.log(err));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://www.omdbapi.com/?apikey=71a9dce3&s=matrix")
+  //     .then((data) => {
+  //       dispatch(searchMovies(data.data.Search));
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [dispatch]);
 
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .get(`https://www.omdbapi.com/?apikey=71a9dce3&s=${searchTerm}`)
-      .then((data) => {
-        dispatch(searchMovies(data.data.Search));
-      })
-      .catch((err) => console.log(err));
+  const onSearchSubmit = (e, type) => {
+    try {
+      e.preventDefault();
+      if (type === "s") {
+        API.getAllMoviesBySearch(searchTerm, (data) =>
+          dispatch(searchMovies(data))
+        );
+      } else {
+        API.getMovieByTitle(searchTerm, (data) =>
+          dispatch(searchSingleMovie(data))
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getMovieDetails = (movieId) => {
@@ -47,50 +55,37 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const handleSearchTypeChange = (e) => {
+    dispatch(searchTypeChange(e));
+  };
+
   return (
     <div
       style={{
         textAlign: "center",
       }}
     >
-      <h1>Counter state: {counter}</h1>
-      <button onClick={() => dispatch(decrement())}>-</button>
-      <button onClick={() => dispatch(increment(5))}>Add 5</button>
-      <button onClick={() => dispatch(increment())}>+</button>
-      <button onClick={() => dispatch(login())}>Log in</button>
-      {isLogged ? <h3>Valuable info here if logged in</h3> : ""}
-
       <div>
-        <form onSubmit={(e) => onSearchSubmit(e)}>
+        <form onSubmit={(e) => onSearchSubmit(e, searchType)}>
           <input
             type="text"
             name="search"
             onChange={(e) => dispatch(change(e))}
           />
+          <select
+            name="search-type"
+            value={searchType}
+            onChange={(e) => handleSearchTypeChange(e)}
+          >
+            <option value="t">One Movie</option>
+            <option value="s">All movies</option>
+          </select>
           <button type="submit">Search</button>
         </form>
       </div>
-      <div
-        style={{
-          width: "100%",
-          margin: "20px",
-          display: "flex",
-          justifyContent: "center",
-          flexFlow: "row wrap",
-        }}
-      >
-        {searchMovie.map((movie, index) => (
-          <div style={{ margin: "2rem" }} key={index}>
-            <h3>
-              {movie.Title} - {movie.Year}
-            </h3>
-            <img
-              style={{ cursor: "pointer" }}
-              onClick={() => getMovieDetails(movie.imdbID)}
-              src={movie.Poster}
-            ></img>
-          </div>
-        ))}
+      <div>
+        {searchType === "s" && <SearchedMovies />}
+        {searchType === "t" && <SearchedSingleMovie />}
       </div>
     </div>
   );

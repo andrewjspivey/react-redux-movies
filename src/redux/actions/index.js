@@ -1,4 +1,9 @@
-import axios from "axios";
+export const searchSingleMovie = (data) => {
+  return {
+    type: "SEARCHSINGLEMOVIE",
+    payload: data,
+  };
+};
 
 export const searchMovies = (data) => {
   return {
@@ -17,6 +22,13 @@ export const getMovieDetailsById = (data) => {
 export const change = (event) => {
   return {
     type: "CHANGE",
+    payload: event,
+  };
+};
+
+export const searchTypeChange = (event) => {
+  return {
+    type: "CHANGE_TYPE",
     payload: event,
   };
 };
