@@ -2,9 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import MovieListContainer from "../StyledComponents/MovieListContainer";
 import ListCard from "../StyledComponents/ListCard";
+import { useHistory } from "react-router-dom";
 
 const SearchedMovies = () => {
   const searchedMovies = useSelector((state) => state.searchedMovies);
+
+  const history = useHistory();
+
   return (
     <MovieListContainer>
       {searchedMovies.map((movie, index) => (
@@ -14,7 +18,7 @@ const SearchedMovies = () => {
           </h3>
           <img
             style={{ cursor: "pointer" }}
-            // onClick={() => getMovieDetails(movie.imdbID)}
+            onClick={() => history.push(`/movie/${movie.imdbID}`)}
             src={movie.Poster}
           />
         </ListCard>

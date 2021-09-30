@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { API } from "./API/API";
 //redux related
@@ -10,6 +11,7 @@ import MainContainer from "./StyledComponents/MainContainer";
 import SearchedMovies from "./Components/SearchedMovies";
 import SearchedSingleMovie from "./Components/SearchedSingleMovie";
 import SearchBar from "./Components/SearchBar";
+import MovieDetails from "./Components/MovieDetails";
 
 function App() {
   const searchTerm = useSelector((state) => state.searchTerm);
@@ -35,11 +37,19 @@ function App() {
 
   return (
     <MainContainer>
-      <SearchBar onSearchSubmit={onSearchSubmit} />
-      <div>
-        {searchType === "s" && <SearchedMovies />}
-        {searchType === "t" && <SearchedSingleMovie />}
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <SearchBar onSearchSubmit={onSearchSubmit} />
+            {searchType === "s" && <SearchedMovies />}
+            {searchType === "t" && <SearchedSingleMovie />}
+          </Route>
+          <Route exact path="/movie/:id">
+            <SearchBar onSearchSubmit={onSearchSubmit} />
+            <MovieDetails />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </MainContainer>
   );
 }
