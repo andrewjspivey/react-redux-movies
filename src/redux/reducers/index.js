@@ -5,6 +5,7 @@ import movieDetailsReducer from "./movieDetails";
 import searchTypeReducer from "./searchType";
 import singleMovieReducer from "./singleMovieReducer";
 import darkModeReducer from "./darkModeReducer";
+import pageReducer from "./pageReducer";
 
 const allReducers = combineReducers({
   searchTerm: searchTermReducer,
@@ -13,6 +14,7 @@ const allReducers = combineReducers({
   singleMovie: singleMovieReducer,
   movieDetails: movieDetailsReducer,
   darkMode: darkModeReducer,
+  page: pageReducer,
 });
 
 export default allReducers;

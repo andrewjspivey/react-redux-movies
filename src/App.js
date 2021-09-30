@@ -23,7 +23,7 @@ function App() {
     try {
       e.preventDefault();
       if (type === "s") {
-        API.getAllMoviesBySearch(searchTerm, (data) =>
+        API.getAllMoviesBySearch(searchTerm, 1, (data) =>
           dispatch(searchMovies(data))
         );
       } else {
