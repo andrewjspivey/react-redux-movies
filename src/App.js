@@ -11,10 +11,12 @@ import SearchedMovies from "./Components/SearchedMovies";
 import SearchedSingleMovie from "./Components/SearchedSingleMovie";
 import SearchBar from "./Components/SearchBar";
 import MovieDetails from "./Components/MovieDetails";
+import DarkModeToggle from "./Components/DarkModeToggle";
 
 function App() {
   const searchTerm = useSelector((state) => state.searchTerm);
   const searchType = useSelector((state) => state.searchType);
+  const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
   const onSearchSubmit = (e, type) => {
@@ -35,10 +37,11 @@ function App() {
   };
 
   return (
-    <MainContainer>
+    <MainContainer darkMode={darkMode}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
+            <DarkModeToggle />
             <SearchBar onSearchSubmit={onSearchSubmit} />
             {searchType === "s" && <SearchedMovies />}
             {searchType === "t" && <SearchedSingleMovie />}

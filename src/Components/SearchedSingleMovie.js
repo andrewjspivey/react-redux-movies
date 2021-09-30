@@ -6,6 +6,7 @@ const SearchedSingleMovie = () => {
   return (
     <div>
       <h1>{singleMovie.Title}</h1>
+      <img src={singleMovie.Poster} alt="" />
     </div>
   );
 };
