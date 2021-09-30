@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { change, searchTypeChange } from "../redux/actions/searchActions";
 import SearchButton from "../StyledComponents/SearchButton";
+import SearchBarContainer from "../StyledComponents/Nav/SearchBarContainer";
+import StyledInput from "../StyledComponents/SearchBar/Input";
+import StyledSelect from "../StyledComponents/SearchBar/Select";
 
 const SearchBar = (props) => {
   const searchTerm = useSelector((state) => state.searchTerm);
@@ -14,21 +17,25 @@ const SearchBar = (props) => {
     dispatch(searchTypeChange(e));
   };
   return (
-    <div>
-      <form onSubmit={(e) => props.onSearchSubmit(e, searchType)}>
-        <input
+    <SearchBarContainer>
+      <form
+        style={{ width: "80%" }}
+        onSubmit={(e) => props.onSearchSubmit(e, searchType)}
+      >
+        <StyledInput
           type="text"
           name="search"
+          placeholder="Search by Title"
           onChange={(e) => dispatch(change(e))}
         />
-        <select
+        <StyledSelect
           name="search-type"
           value={searchType}
           onChange={(e) => handleSearchTypeChange(e)}
         >
           <option value="t">One Movie</option>
           <option value="s">All movies</option>
-        </select>
+        </StyledSelect>
         <SearchButton
           type="submit"
           onClick={() => {
@@ -38,7 +45,7 @@ const SearchBar = (props) => {
           Search
         </SearchButton>
       </form>
-    </div>
+    </SearchBarContainer>
   );
 };
 

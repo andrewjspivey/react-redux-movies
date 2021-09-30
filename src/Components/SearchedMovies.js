@@ -26,23 +26,34 @@ const SearchedMovies = () => {
     }
   }, [page]);
 
+  const truncate = (str, len = 20) => {
+    if (str.length > 15) {
+      return `${str.substring(0, len)}...`;
+    } else {
+      return str;
+    }
+  };
+
   return (
-    <MovieListContainer>
+    <div>
       <Paginator />
-      {searchedMovies &&
-        searchedMovies.map((movie, index) => (
-          <ListCard key={index}>
-            <ListCardHeader darkMode={darkMode}>
-              {movie.Title} ({movie.Year})
-            </ListCardHeader>
-            <ListCardImage
-              onClick={() => history.push(`/movie/${movie.imdbID}`)}
-              src={movie.Poster}
-              alt="No Poster"
-            />
-          </ListCard>
-        ))}
-    </MovieListContainer>
+      <MovieListContainer>
+        {searchedMovies &&
+          searchedMovies.map((movie, index) => (
+            <ListCard key={index}>
+              <ListCardHeader darkMode={darkMode}>
+                {truncate(movie.Title)} ({movie.Year})
+              </ListCardHeader>
+              <ListCardImage
+                onClick={() => history.push(`/movie/${movie.imdbID}`)}
+                src={movie.Poster}
+                alt="No Poster"
+              />
+            </ListCard>
+          ))}
+      </MovieListContainer>
+      <Paginator />
+    </div>
   );
 };
 

@@ -7,8 +7,10 @@ const Paginator = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <button onClick={() => dispatch(prevPage())}>prev page</button>
+    <div style={{ margin: "1.5em" }}>
+      {page > 1 && (
+        <button onClick={() => dispatch(prevPage())}>prev page</button>
+      )}
       <button onClick={() => dispatch(nextPage())}>next page</button>
     </div>
   );

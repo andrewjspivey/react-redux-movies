@@ -1,7 +1,8 @@
 import React from "react";
-import StyledNavBar from "../StyledComponents/NavBar";
+import StyledNavBar from "../StyledComponents/Nav/NavBar";
 import SearchBar from "./SearchBar";
 import DarkModeToggle from "./DarkModeToggle";
+import SearchBarContainer from "../StyledComponents/Nav/SearchBarContainer";
 
 const NavBar = ({ onSearchSubmit }) => {
   return (

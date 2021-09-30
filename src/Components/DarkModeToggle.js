@@ -6,7 +6,13 @@ const DarkModeToggle = () => {
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
-  return <button onClick={() => dispatch(toggleDarkMode())}>toggle</button>;
+  return (
+    <div>
+      <button onClick={() => dispatch(toggleDarkMode())}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+    </div>
+  );
 };
 
 export default DarkModeToggle;
