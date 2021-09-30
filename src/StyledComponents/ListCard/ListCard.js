@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const ListCard = styled.div`
-  margin: 2rem;
+  margin: 1rem;
+  width: 20%;
 `;
 
 export default ListCard;
