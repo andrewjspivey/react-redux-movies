@@ -6,10 +6,9 @@ export const API = {
       const response = await axios.get(
         `http://www.omdbapi.com/?apikey=71a9dce3&t=${title}`
       );
-
-      await cb(response.data);
+      cb(null, response.data);
     } catch (error) {
-      console.log(error);
+      cb(false);
     }
   },
   getAllMoviesBySearch: async (title, page = 1, cb) => {
@@ -17,9 +16,9 @@ export const API = {
       const response = await axios.get(
         `http://www.omdbapi.com/?apikey=71a9dce3&s=${title}&page=${page}`
       );
-      await cb(response.data.Search);
+      cb(null, response.data);
     } catch (error) {
-      console.log(error);
+      cb(false);
     }
   },
   getMovieDetails: async (movieId, cb) => {
@@ -27,7 +26,6 @@ export const API = {
       const response = await axios.get(
         `https://www.omdbapi.com/?apikey=71a9dce3&i=${movieId}`
       );
-
       await cb(response.data);
     } catch (error) {
       console.log(error);

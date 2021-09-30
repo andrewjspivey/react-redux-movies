@@ -23,13 +23,16 @@ function App() {
     try {
       e.preventDefault();
       if (type === "s") {
-        API.getAllMoviesBySearch(searchTerm, 1, (data) =>
-          dispatch(searchMovies(data))
-        );
+        API.getAllMoviesBySearch(searchTerm, 1, (err, data) => {
+          if (err) throw err;
+          console.log(data.Response);
+          if (data.Response === "True") dispatch(searchMovies(data.Search));
+        });
       } else {
-        API.getMovieByTitle(searchTerm, (data) =>
-          dispatch(searchSingleMovie(data))
-        );
+        API.getMovieByTitle(searchTerm, (err, data) => {
+          if (err) throw err;
+          if (data.Response === "True") dispatch(searchSingleMovie(data));
+        });
       }
     } catch (error) {
       console.log(error);

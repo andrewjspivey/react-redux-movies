@@ -23,23 +23,24 @@ const SearchedMovies = () => {
         dispatch(searchMovies(data))
       );
     }
-  }, [page]);
+  }, [searchTerm, page]);
 
   return (
     <MovieListContainer>
       <Paginator />
-      {searchedMovies.map((movie, index) => (
-        <ListCard key={index}>
-          <ListCardHeader darkMode={darkMode}>
-            {movie.Title} ({movie.Year})
-          </ListCardHeader>
-          <ListCardImage
-            onClick={() => history.push(`/movie/${movie.imdbID}`)}
-            src={movie.Poster}
-            alt="No Poster"
-          />
-        </ListCard>
-      ))}
+      {searchedMovies &&
+        searchedMovies.map((movie, index) => (
+          <ListCard key={index}>
+            <ListCardHeader darkMode={darkMode}>
+              {movie.Title} ({movie.Year})
+            </ListCardHeader>
+            <ListCardImage
+              onClick={() => history.push(`/movie/${movie.imdbID}`)}
+              src={movie.Poster}
+              alt="No Poster"
+            />
+          </ListCard>
+        ))}
     </MovieListContainer>
   );
 };
