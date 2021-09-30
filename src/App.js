@@ -12,6 +12,8 @@ import SearchedSingleMovie from "./Components/SearchedSingleMovie";
 import SearchBar from "./Components/SearchBar";
 import MovieDetails from "./Components/MovieDetails";
 import DarkModeToggle from "./Components/DarkModeToggle";
+import NavBar from "./Components/NavBar";
+import Home from "./Components/Home";
 
 function App() {
   const searchTerm = useSelector((state) => state.searchTerm);
@@ -42,12 +44,10 @@ function App() {
   return (
     <MainContainer darkMode={darkMode}>
       <BrowserRouter>
+        <NavBar onSearchSubmit={onSearchSubmit} />
         <Switch>
           <Route exact path="/">
-            <DarkModeToggle />
-            <SearchBar onSearchSubmit={onSearchSubmit} />
-            {searchType === "s" && <SearchedMovies />}
-            {searchType === "t" && <SearchedSingleMovie />}
+            <Home />
           </Route>
           <Route exact path="/movie/:id">
             <SearchBar onSearchSubmit={onSearchSubmit} />

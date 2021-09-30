@@ -19,11 +19,12 @@ const SearchedMovies = () => {
 
   useEffect(() => {
     if (page > 0) {
-      API.getAllMoviesBySearch(searchTerm, page, (data) =>
-        dispatch(searchMovies(data))
-      );
+      API.getAllMoviesBySearch(searchTerm, page, (err, data) => {
+        if (err) throw err;
+        if (data.Response === "True") dispatch(searchMovies(data.Search));
+      });
     }
-  }, [searchTerm, page]);
+  }, [page]);
 
   return (
     <MovieListContainer>
