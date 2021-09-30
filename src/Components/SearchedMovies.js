@@ -1,20 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import MovieListContainer from "../StyledComponents/MovieListContainer";
+import ListCard from "../StyledComponents/ListCard";
 
 const SearchedMovies = () => {
   const searchedMovies = useSelector((state) => state.searchedMovies);
   return (
-    <div
-      style={{
-        width: "100%",
-        margin: "20px",
-        display: "flex",
-        justifyContent: "center",
-        flexFlow: "row wrap",
-      }}
-    >
+    <MovieListContainer>
       {searchedMovies.map((movie, index) => (
-        <div style={{ margin: "2rem" }} key={index}>
+        <ListCard style={{ margin: "2rem" }} key={index}>
           <h3>
             {movie.Title} - {movie.Year}
           </h3>
@@ -22,10 +16,10 @@ const SearchedMovies = () => {
             style={{ cursor: "pointer" }}
             // onClick={() => getMovieDetails(movie.imdbID)}
             src={movie.Poster}
-          ></img>
-        </div>
+          />
+        </ListCard>
       ))}
-    </div>
+    </MovieListContainer>
   );
 };
 
