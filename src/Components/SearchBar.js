@@ -27,7 +27,7 @@ const SearchBar = (props) => {
           <option value="t">One Movie</option>
           <option value="s">All movies</option>
         </select>
-        <SearchBar type="submit">Search</SearchBar>
+        <SearchButton type="submit">Search</SearchButton>
       </form>
     </div>
   );
