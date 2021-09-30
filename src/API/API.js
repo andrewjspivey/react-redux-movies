@@ -15,4 +15,11 @@ export const API = {
 
     await cb(response.data.Search);
   },
+  getMovieDetails: async (movieId, cb) => {
+    const response = await axios.get(
+      `https://www.omdbapi.com/?apikey=71a9dce3&i=${movieId}`
+    );
+
+    await cb(response.data);
+  },
 };

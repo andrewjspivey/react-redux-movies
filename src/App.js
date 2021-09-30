@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { API } from "./API/API";
 //redux related
 import { searchMovies, searchSingleMovie } from "./redux/actions/dataActions";
-import { change, searchTypeChange } from "./redux/actions/searchActions";
 //styled-components
 import MainContainer from "./StyledComponents/MainContainer";
 //components
