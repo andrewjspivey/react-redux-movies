@@ -1,33 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { API } from "./API/API";
-import {
-  searchMovies,
-  getMovieDetailsById,
-  change,
-  searchTypeChange,
-  searchSingleMovie,
-} from "./redux/actions/index";
-import axios from "axios";
+import { searchMovies, searchSingleMovie } from "./redux/actions/dataActions";
+import { change, searchTypeChange } from "./redux/actions/searchActions";
 import SearchedMovies from "./Components/SearchedMovies";
 import SearchedSingleMovie from "./Components/SearchedSingleMovie";
 
 function App() {
   const searchTerm = useSelector((state) => state.searchTerm);
   const searchType = useSelector((state) => state.searchType);
-  const searchedMovies = useSelector((state) => state.searchedMovies);
-  const singleMovie = useSelector((state) => state.singleMovie);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://www.omdbapi.com/?apikey=71a9dce3&s=matrix")
-  //     .then((data) => {
-  //       dispatch(searchMovies(data.data.Search));
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [dispatch]);
 
   const onSearchSubmit = (e, type) => {
     try {
@@ -44,15 +27,6 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const getMovieDetails = (movieId) => {
-    axios
-      .get(`https://www.omdbapi.com/?apikey=71a9dce3&i=${movieId}`)
-      .then((data) => {
-        dispatch(getMovieDetailsById(data.data));
-      })
-      .catch((err) => console.log(err));
   };
 
   const handleSearchTypeChange = (e) => {
