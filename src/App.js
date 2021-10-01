@@ -7,17 +7,12 @@ import { searchMovies, searchSingleMovie } from "./redux/actions/dataActions";
 //styled-components
 import MainContainer from "./StyledComponents/MainContainer";
 //components
-import SearchedMovies from "./Components/SearchedMovies";
-import SearchedSingleMovie from "./Components/SearchedSingleMovie";
-import SearchBar from "./Components/SearchBar";
 import MovieDetails from "./Components/MovieDetails";
-import DarkModeToggle from "./Components/DarkModeToggle";
 import NavBar from "./Components/NavBar";
 import Home from "./Components/Home";
 
 function App() {
   const searchTerm = useSelector((state) => state.searchTerm);
-  const searchType = useSelector((state) => state.searchType);
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
@@ -50,7 +45,6 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/movie/:id">
-            <SearchBar onSearchSubmit={onSearchSubmit} />
             <MovieDetails />
           </Route>
         </Switch>

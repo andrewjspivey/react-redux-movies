@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledNavBar = styled.div`
   width: 100%;
-  min-height: 10vh;
+  min-height: 9vh;
   background-color: gray;
   display: flex;
   align-items: center;

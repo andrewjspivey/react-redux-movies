@@ -24,7 +24,7 @@ const SearchedMovies = () => {
         if (data.Response === "True") dispatch(searchMovies(data.Search));
       });
     }
-  }, [page]);
+  }, [searchTerm, page]);
 
   const truncate = (str, len = 20) => {
     if (str.length > 15) {
