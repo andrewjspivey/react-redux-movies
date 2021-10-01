@@ -39,7 +39,7 @@ function App() {
   return (
     <MainContainer darkMode={darkMode}>
       <BrowserRouter>
-        <NavBar onSearchSubmit={onSearchSubmit} />
+        <NavBar darkMode={darkMode} onSearchSubmit={onSearchSubmit} />
         <Switch>
           <Route exact path="/">
             <Home />

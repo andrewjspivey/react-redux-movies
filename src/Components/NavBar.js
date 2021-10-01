@@ -4,9 +4,9 @@ import SearchBar from "./SearchBar";
 import DarkModeToggle from "./DarkModeToggle";
 import SearchBarContainer from "../StyledComponents/Nav/SearchBarContainer";
 
-const NavBar = ({ onSearchSubmit }) => {
+const NavBar = ({ onSearchSubmit, darkMode }) => {
   return (
-    <StyledNavBar>
+    <StyledNavBar darkMode={darkMode}>
       <SearchBar onSearchSubmit={onSearchSubmit} />
       <DarkModeToggle />
     </StyledNavBar>
