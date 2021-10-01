@@ -5,6 +5,8 @@ const SingleMovieContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+  max-width: 90%;
+  align-self: center;
 `;
 
 export default SingleMovieContainer;

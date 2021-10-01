@@ -87,7 +87,7 @@ const SearchedSingleMovie = () => {
               </HThrees>
             </Contributions>
           )}
-          {singleMovie.Ratings.length > 1 && (
+          {singleMovie.Ratings && (
             <div
               style={{
                 display: "flex",
